@@ -18,25 +18,41 @@
     <button onclick="
     
       randomNum = Math.random();
-      alert(`your move: Rock\ncomputer move: ${makeComputerMove()}\nresult: ${getResult('Rock' , makeComputerMove())}`);
+      showMessage('Rock');
 
     ">Rock</button>
 
     <button onclick="
       
       randomNum = Math.random();
-      alert(`your move: Paper\ncomputer move: ${makeComputerMove()}\nresult: ${getResult('Paper' , makeComputerMove())}`);
+      showMessage('Paper');
 
     ">Paper</button>
 
     <button onclick="
 
       randomNum = Math.random();
-      alert(`your move: Scissors\ncomputer move: ${makeComputerMove()}\nresult: ${getResult('Scissors' , makeComputerMove())}`)
+      showMessage('Scissors');
 
     ">Scissors</button>
+    <br>
+    <br>
+    <button onclick="
+
+      score.wins = 0;
+      score.loses= 0;
+      score.ties = 0;
+
+    ">Reset score</button>
 
     <script>
+      
+      const score=
+      {
+        wins : 0,
+        loses: 0,
+        ties : 0
+      };
 
       let randomNum=0 ;
 
@@ -58,6 +74,21 @@
                         :result = computerMoveInput ==='Scissors'?'it is a tie!':computerMoveInput ==='Rock'    ?'you lose!':'you win!';
 
         return result;
+      }
+
+      function addScore(resultInput)
+      {
+        resultInput === 'it is a tie!' ?++score.ties :resultInput === 'you lose!' ?++score.loses:++score.wins;
+        return resultInput;
+      }
+
+      function showMessage(input)
+      {
+        alert(`\tyour move: ${input}
+        computer move: ${makeComputerMove()}
+        result: ${addScore(getResult(input , makeComputerMove()))}
+               
+        Wins: ${score.wins} , Loses: ${score.loses} , Ties: ${score.ties}`)
       }
       
     </script>
