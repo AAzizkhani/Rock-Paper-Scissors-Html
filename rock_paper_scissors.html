@@ -43,16 +43,14 @@
       score.loses= 0;
       score.ties = 0;
 
+      localStorage.removeItem('score');
+
     ">Reset score</button>
 
     <script>
       
-      const score=
-      {
-        wins : 0,
-        loses: 0,
-        ties : 0
-      };
+      let score = JSON.parse(localStorage.getItem('score')) || {wins: 0 , loses: 0 , ties: 0};
+      //!score ? score = {wins: 0 , loses: 0 , ties: 0}:{};//another type of second psrt of code line 52
 
       let randomNum=0 ;
 
@@ -79,6 +77,7 @@
       function addScore(resultInput)
       {
         resultInput === 'it is a tie!' ?++score.ties :resultInput === 'you lose!' ?++score.loses:++score.wins;
+        localStorage.setItem('score' , JSON.stringify(score));
         return resultInput;
       }
 
