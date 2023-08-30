@@ -16,47 +16,50 @@
     <p>Rock Paper Scissors</p>
     <br>
     <button onclick="
+    
+      randomNum = Math.random();
+      alert(`your move: Rock\ncomputer move: ${makeComputerMove()}\nresult: ${getResult('Rock' , makeComputerMove())}`);
 
-      randomNum    = Math.random();
-  
-      computerMove = 1/3>randomNum && randomNum >=0 ? 'Rock' : 2/3>randomNum && randomNum >=1/3 ? 'Paper' : 'Scissors';
-      
-      result       = computerMove === 'Rock' ? 'it is a tie!' : computerMove === 'Paper' ? 'you lose!' : 'you win!';
-
-      alert(`your move: Rock\ncomputer move: ${computerMove}\nresult: ${result}`)
-
-      ">
-      Rock</button>
+    ">Rock</button>
 
     <button onclick="
       
-      randomNum    = Math.random();
+      randomNum = Math.random();
+      alert(`your move: Paper\ncomputer move: ${makeComputerMove()}\nresult: ${getResult('Paper' , makeComputerMove())}`);
 
-      computerMove = 1/3>randomNum && randomNum >=0 ? 'Rock' : 2/3>randomNum && randomNum >=1/3 ? 'Paper' : 'Scissors';
-      
-      result       = computerMove === 'Paper' ? 'it is a tie!' : computerMove === 'Scissors' ? 'you lose!' : 'you win!';
-
-      alert(`your move: Paper\ncomputer move: ${computerMove}\nresult: ${result}`)">
-
-    Paper</button>
+    ">Paper</button>
 
     <button onclick="
 
-      randomNum    = Math.random();
+      randomNum = Math.random();
+      alert(`your move: Scissors\ncomputer move: ${makeComputerMove()}\nresult: ${getResult('Scissors' , makeComputerMove())}`)
 
-      computerMove = 1/3>randomNum && randomNum >=0 ? 'Rock' : 2/3>randomNum && randomNum >=1/3 ? 'Paper' : 'Scissors';
-      
-      result       = computerMove === 'Scissors' ? 'it is a tie!' : computerMove === 'Rock' ? 'you lose!' : 'you win!';
+    ">Scissors</button>
 
-      alert(`your move: Scissors\ncomputer move: ${computerMove}\nresult: ${result}`)">
-
-    Scissors</button>
     <script>
 
-      let randomNum    =0 ;
-      let computerMove ='';
-      let result       ='';
+      let randomNum=0 ;
 
+      function makeComputerMove()
+      {
+        let computerMove ='';
+
+        computerMove = 1/3>randomNum && randomNum >=0 ? 'Rock' : 2/3>randomNum && randomNum >=1/3 ? 'Paper' : 'Scissors';
+
+        return computerMove;
+      }
+
+      function getResult(input , computerMoveInput)
+      {
+        let result ='';
+
+        input ==='Rock' ?result = computerMoveInput ==='Rock'    ?'it is a tie!':computerMoveInput ==='Paper'   ?'you lose!':'you win!'
+       :input ==='Paper'?result = computerMoveInput ==='Paper'   ?'it is a tie!':computerMoveInput ==='Scissors'?'you lose!':'you win!'
+                        :result = computerMoveInput ==='Scissors'?'it is a tie!':computerMoveInput ==='Rock'    ?'you lose!':'you win!';
+
+        return result;
+      }
+      
     </script>
 
   </body>
