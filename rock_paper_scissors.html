@@ -35,25 +35,38 @@
       showMessage('Scissors');
 
     ">Scissors</button>
+
+    <p class="jsScore"         ></p>
     <br>
+    <p class="jsResult"        ></p>
     <br>
+    <p class="jsHumanMove"     ></p>
+    <p class="jsComputerMove"  ></p>
+  
     <button onclick="
 
       score.wins = 0;
       score.loses= 0;
       score.ties = 0;
 
-      localStorage.removeItem('score');
+    localStorage.removeItem('score');
+    updateScoreTxt();
 
     ">Reset score</button>
-
+    
+    
     <script>
       
       let score = JSON.parse(localStorage.getItem('score')) || {wins: 0 , loses: 0 , ties: 0};
       //!score ? score = {wins: 0 , loses: 0 , ties: 0}:{};//another type of second psrt of code line 52
-
+      
       let randomNum=0 ;
-
+      
+      function updateScoreTxt()
+      {
+        document.querySelector('.jsScore').innerHTML = `Wins: ${score.wins} , Loses: ${score.loses} , Ties: ${score.ties}`;
+      } updateScoreTxt();
+    
       function makeComputerMove()
       {
         let computerMove ='';
@@ -62,36 +75,36 @@
 
         return computerMove;
       }
-
+      
       function getResult(input , computerMoveInput)
       {
         let result ='';
-
-        input ==='Rock' ?result = computerMoveInput ==='Rock'    ?'it is a tie!':computerMoveInput ==='Paper'   ?'you lose!':'you win!'
-       :input ==='Paper'?result = computerMoveInput ==='Paper'   ?'it is a tie!':computerMoveInput ==='Scissors'?'you lose!':'you win!'
-                        :result = computerMoveInput ==='Scissors'?'it is a tie!':computerMoveInput ==='Rock'    ?'you lose!':'you win!';
-
+        
+        input ==='Rock'  ?result = computerMoveInput ==='Rock'    ?'it is a tie!':computerMoveInput ==='Paper'   ?'you lose!':'you win!'
+        :input ==='Paper'?result = computerMoveInput ==='Paper'   ?'it is a tie!':computerMoveInput ==='Scissors'?'you lose!':'you win!'
+                         :result = computerMoveInput ==='Scissors'?'it is a tie!':computerMoveInput ==='Rock'    ?'you lose!':'you win!';
+        
         return result;
-      }
-
+      } 
+      
       function addScore(resultInput)
       {
         resultInput === 'it is a tie!' ?++score.ties :resultInput === 'you lose!' ?++score.loses:++score.wins;
         localStorage.setItem('score' , JSON.stringify(score));
+        updateScoreTxt(); 
         return resultInput;
       }
 
       function showMessage(input)
       {
-        alert(`\tyour move: ${input}
-        computer move: ${makeComputerMove()}
-        result: ${addScore(getResult(input , makeComputerMove()))}
-               
-        Wins: ${score.wins} , Loses: ${score.loses} , Ties: ${score.ties}`)
+        document.querySelector('.jsResult'      ).innerHTML   = addScore(getResult(input , makeComputerMove()));
+        document.querySelector('.jsHumanMove'   ).innerHTML   = `Your move: ${input}` ;
+        document.querySelector('.jsComputerMove').innerHTML   = `Computer move: ${makeComputerMove()}` ;
       }
-      
-    </script>
 
-  </body>
+      
+      </script>
+
+</body>
 
 </html>
