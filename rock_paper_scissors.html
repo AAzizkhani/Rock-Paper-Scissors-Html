@@ -9,32 +9,67 @@
 
     <title>Rock Paper Scissors</title>
 
+    <style>
+      body
+      {
+        background-color: black;
+        color: white;
+        font-family:serif;
+      }
+
+      .title
+      {
+        font-size: 20px;
+        font-weight: bold;
+        padding-left:16cm;
+      }
+
+      .iconPic
+      {
+        height: 100px;
+      }
+      .moveBtn
+      { 
+        background-color:transparent;
+        width:  190px;
+        height: 190px;
+        border: 3px solid snow;
+        border-radius: 200px;
+
+        margin-right: 3px;
+        
+      }
+      
+
+    </style>
+
   </head>
 
   <body>
     
-    <p>Rock Paper Scissors</p>
+    <p class="title">Rock Paper Scissors</p>
     <br>
-    <button onclick="
+    
+    <button class="moveBtn" onclick="
     
       randomNum = Math.random();
       showMessage('Rock');
 
-    ">Rock</button>
+    "><img src="img/rock.png" class="iconPic"></button>
 
-    <button onclick="
+    <button class="moveBtn" onclick="
       
       randomNum = Math.random();
       showMessage('Paper');
 
-    ">Paper</button>
+    "><img src="img/paper.png" class="iconPic"></button>
 
-    <button onclick="
+    <button class="moveBtn" onclick="
 
       randomNum = Math.random();
       showMessage('Scissors');
 
-    ">Scissors</button>
+    "><img src="img/scissors.png" class="iconPic"></button>
 
     <p class="jsScore"         ></p>
     <br>
