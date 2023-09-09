@@ -14,32 +14,86 @@
       {
         background-color: black;
         color: white;
-        font-family:serif;
+        font-family:Arial, Helvetica, sans-serif;
       }
 
       .title
       {
-        font-size: 20px;
+        font-size: 25px;
         font-weight: bold;
-        padding-left:16cm;
+
+        position:relative;
+        -ms-transform: translatex(15.5cm);
+        transform: translatex(15.5cm);      
       }
 
       .iconPic
       {
-        height: 100px;
+        height: 76px;
       }
       .moveBtn
       { 
         background-color:transparent;
-        width:  190px;
-        height: 190px;
+        width:  150px;
+        height: 150px;
         border: 3px solid snow;
         border-radius: 200px;
 
-        margin-right: 3px;
+        position:relative;
+        -ms-transform: translatex(12.5cm);
+        transform: translatex(12.5cm);
+        
+        margin-right: 4px;
         
       }
       
+      .cssResult
+      {
+        font-size: 22px;
+        font-weight: bold;
+
+        position:relative;
+        -ms-transform: translatex(17.5cm);
+        transform: translatex(17.5cm);
+
+      }
+
+      .cssMove
+      {
+        position:relative;
+        -ms-transform: translatex(14.64cm);
+        transform: translatex(14.64cm);
+      }
+
+      .cssScore
+      {
+        font-weight: bold;
+
+        position:relative;
+        -ms-transform: translatex(13cm);
+        transform: translatex(13cm);
+        
+      }
+
+      .resetBtn
+      {
+        font-family: Arial;
+        font-weight: bold;
+        font-size: 15px;
+
+        padding: 10px;
+        border: none;
+        border-radius: 20px;
+
+        background-color:rgb(243, 71, 71);
+        color: white;
+
+        position:relative;
+        -ms-transform: translatex(22cm);
+        transform: translatex(22cm);
+      }
+
+
 
     </style>
 
@@ -49,36 +103,36 @@
     
     <p class="title">Rock Paper Scissors</p>
     <br>
+    <br>
     
     <button class="moveBtn" onclick="
     
       randomNum = Math.random();
       showMessage('Rock');
 
-    "><img src="img/rock.png" class="iconPic"></button>
+    "><img src="img/Rock.png" class="iconPic"></button>
 
     <button class="moveBtn" onclick="
       
       randomNum = Math.random();
       showMessage('Paper');
 
-    "><img src="img/paper.png" class="iconPic"></button>
+    "><img src="img/Paper.png" class="iconPic"></button>
 
     <button class="moveBtn" onclick="
 
       randomNum = Math.random();
       showMessage('Scissors');
 
-    "><img src="img/scissors.png" class="iconPic"></button>
+    "><img src="img/Scissors.png" class="iconPic"></button>
 
-    <p class="jsScore"         ></p>
+    <p class="jsResult cssResult"></p>
     <br>
-    <p class="jsResult"        ></p>
+    <p class="jsMove cssMove"    ></p>
     <br>
-    <p class="jsHumanMove"     ></p>
-    <p class="jsComputerMove"  ></p>
+    <p class="jsScore cssScore"  ></p>
   
-    <button onclick="
+    <button class="resetBtn" onclick="
 
       score.wins = 0;
       score.loses= 0;
@@ -115,29 +169,28 @@
       {
         let result ='';
         
-        input ==='Rock'  ?result = computerMoveInput ==='Rock'    ?'it is a tie!':computerMoveInput ==='Paper'   ?'you lose!':'you win!'
-        :input ==='Paper'?result = computerMoveInput ==='Paper'   ?'it is a tie!':computerMoveInput ==='Scissors'?'you lose!':'you win!'
-                         :result = computerMoveInput ==='Scissors'?'it is a tie!':computerMoveInput ==='Rock'    ?'you lose!':'you win!';
+        input ==='Rock'  ?result = computerMoveInput ==='Rock'    ?'It is a tie!':computerMoveInput ==='Paper'   ?'You lose!':'You win!'
+        :input ==='Paper'?result = computerMoveInput ==='Paper'   ?'It is a tie!':computerMoveInput ==='Scissors'?'You lose!':'You win!'
+                         :result = computerMoveInput ==='Scissors'?'It is a tie!':computerMoveInput ==='Rock'    ?'You lose!':'You win!';
         
         return result;
       } 
       
       function addScore(resultInput)
       {
-        resultInput === 'it is a tie!' ?++score.ties :resultInput === 'you lose!' ?++score.loses:++score.wins;
+        resultInput === 'It is a tie!' ?++score.ties :resultInput === 'You lose!' ?++score.loses:++score.wins;
         localStorage.setItem('score' , JSON.stringify(score));
-        updateScoreTxt(); 
+        updateScoreTxt();
+        
         return resultInput;
       }
 
       function showMessage(input)
       {
         document.querySelector('.jsResult'      ).innerHTML   = addScore(getResult(input , makeComputerMove()));
-        document.querySelector('.jsHumanMove'   ).innerHTML   = `Your move: ${input}` ;
-        document.querySelector('.jsComputerMove').innerHTML   = `Computer move: ${makeComputerMove()}` ;
+        document.querySelector('.jsMove'        ).innerHTML   = `You<img src="img/${input}.png" class="iconPic"><img src="img/${makeComputerMove()}.png" class="iconPic">Computer`;
       }
 
-      
       </script>
 
 </body>
