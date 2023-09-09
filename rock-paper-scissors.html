@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rock Paper Scissors</title>
+
+    <link rel="stylesheet" href="styles/rock-paper-scissors.css">
+
+  </head>
+
+  <body>
+    
+    <p class="title">Rock Paper Scissors</p>
+    <br>
+    <br>
+    
+    <button class="moveBtn" onclick="
+    
+      randomNum = Math.random();
+      showMessage('Rock');
+
+    "><img src="img/Rock.png" class="iconPic"></button>
+
+    <button class="moveBtn" onclick="
+      
+      randomNum = Math.random();
+      showMessage('Paper');
+
+    "><img src="img/Paper.png" class="iconPic"></button>
+
+    <button class="moveBtn" onclick="
+
+      randomNum = Math.random();
+      showMessage('Scissors');
+
+    "><img src="img/Scissors.png" class="iconPic"></button>
+
+    <p class="jsResult cssResult"></p>
+    <br>
+    <p class="jsMove cssMove"    ></p>
+    <br>
+    <p class="jsScore cssScore"  ></p>
+  
+    <button class="resetBtn" onclick="
+
+      score.wins = 0;
+      score.loses= 0;
+      score.ties = 0;
+
+    localStorage.removeItem('score');
+    updateScoreTxt();
+
+    ">Reset score</button>
+    
+    <script src="scripts/rock-paper-scissors.js"></script>
+
+</body>
+
+</html>
